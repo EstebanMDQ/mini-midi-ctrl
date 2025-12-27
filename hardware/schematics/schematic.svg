@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1200" height="800" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      .component { fill: white; stroke: black; stroke-width: 2; }
+      .text { font-family: Arial, sans-serif; font-size: 12px; fill: black; }
+      .title { font-family: Arial, sans-serif; font-size: 16px; font-weight: bold; fill: black; }
+      .label { font-family: Arial, sans-serif; font-size: 10px; fill: black; }
+      .wire { stroke: black; stroke-width: 1.5; fill: none; }
+      .power { stroke: red; stroke-width: 2; fill: none; }
+      .ground { stroke: black; stroke-width: 2; fill: none; }
+      .signal { stroke: blue; stroke-width: 1.5; fill: none; }
+    </style>
+  </defs>
+  
+  <!-- Title -->
+  <text x="600" y="30" class="title" text-anchor="middle">Ultra-Compact Bluetooth MIDI Controller - Simplified Schematic</text>
+  
+  <!-- TP4056 LiPo Charger Module -->
+  <rect x="150" y="100" width="140" height="140" class="component"/>
+  <text x="220" y="85" class="text" text-anchor="middle" font-weight="bold">TP4056 Module</text>
+  <text x="220" y="160" class="text" text-anchor="middle">LiPo Charger</text>
+  <text x="220" y="180" class="text" text-anchor="middle">with USB port</text>
+  
+  <!-- TP4056 pins -->
+  <circle cx="150" cy="130" r="3" fill="black"/>
+  <text x="115" y="135" class="label">USB 5V</text>
+  <circle cx="150" cy="210" r="3" fill="black"/>
+  <text x="120" y="215" class="label">GND</text>
+  <circle cx="290" cy="150" r="3" fill="black"/>
+  <text x="295" y="155" class="label">BAT+</text>
+  <circle cx="290" cy="190" r="3" fill="black"/>
+  <text x="295" y="195" class="label">BAT-</text>
+  
+  <!-- USB symbol on TP4056 -->
+  <rect x="95" y="120" width="30" height="20" class="component"/>
+  <text x="110" y="135" class="label" text-anchor="middle">USB</text>
+  
+  <!-- Note about TP4056 -->
+  <text x="220" y="255" class="label" text-anchor="middle">1A charging current</text>
+  <text x="220" y="270" class="label" text-anchor="middle">Built-in protection</text>
+  
+  <!-- LiPo Battery -->
+  <rect x="400" y="140" width="110" height="70" class="component"/>
+  <text x="455" y="130" class="text" text-anchor="middle">LiPo Battery</text>
+  <text x="455" y="175" class="text" text-anchor="middle">3.7V</text>
+  <text x="455" y="195" class="text" text-anchor="middle">150-300mAh</text>
+  <circle cx="400" cy="160" r="3" fill="black"/>
+  <text x="375" y="165" class="label">+</text>
+  <circle cx="400" cy="190" r="3" fill="black"/>
+  <text x="375" y="195" class="label">-</text>
+  
+  <!-- ESP32-C3-SuperMini -->
+  <rect x="650" y="80" width="180" height="240" class="component"/>
+  <text x="740" y="65" class="text" text-anchor="middle" font-weight="bold">ESP32-C3-SuperMini</text>
+  <text x="740" y="150" class="text" text-anchor="middle">BLE Module</text>
+  <text x="740" y="170" class="text" text-anchor="middle">8MB Flash</text>
+  <text x="740" y="200" class="text" text-anchor="middle">Built-in USB-C</text>
+  <text x="740" y="220" class="text" text-anchor="middle">Built-in 3.3V LDO</text>
+  
+  <!-- ESP32 pins -->
+  <circle cx="650" cy="120" r="3" fill="black"/>
+  <text x="615" y="125" class="label">VBAT</text>
+  <circle cx="650" cy="280" r="3" fill="black"/>
+  <text x="620" y="285" class="label">GND</text>
+  <circle cx="650" cy="240" r="3" fill="black"/>
+  <text x="605" y="245" class="label">GPIO2</text>
+  <circle cx="830" cy="260" r="3" fill="black"/>
+  <text x="835" y="265" class="label">GPIO8</text>
+  
+  <!-- Decoupling capacitor for ESP32 -->
+  <rect x="615" y="110" width="15" height="30" class="component"/>
+  <text x="622" y="105" class="label">100nF</text>
+  
+  <!-- Touch Pad -->
+  <circle cx="500" cy="420" r="60" class="component"/>
+  <text x="500" y="395" class="text" text-anchor="middle">Capacitive</text>
+  <text x="500" y="420" class="text" text-anchor="middle">Touch Pad</text>
+  <text x="500" y="445" class="text" text-anchor="middle">(PCB Copper)</text>
+  <text x="500" y="465" class="text" text-anchor="middle">~10-15mm ø</text>
+  <circle cx="560" cy="420" r="3" fill="black"/>
+  
+  <!-- Touch discharge resistor -->
+  <rect x="580" y="412" width="60" height="15" class="component"/>
+  <text x="610" y="405" class="label">1MΩ</text>
+  <text x="610" y="450" class="label" text-anchor="middle">Discharge resistor</text>
+  <text x="610" y="465" class="label" text-anchor="middle">(prevents stuck state)</text>
+  
+  <!-- LED (optional) -->
+  <polygon points="880,250 900,260 880,270" class="component"/>
+  <text x="910" y="265" class="label">LED 0603</text>
+  <text x="910" y="280" class="label">(optional)</text>
+  
+  <!-- LED Resistor -->
+  <rect x="930" y="252" width="60" height="15" class="component"/>
+  <text x="960" y="290" class="label">1kΩ</text>
+  
+  <!-- Power connections -->
+  <!-- Battery to TP4056 -->
+  <line x1="290" y1="150" x2="400" y2="160" class="power"/>
+  <line x1="290" y1="190" x2="400" y2="190" class="ground"/>
+  
+  <!-- Battery to ESP32 -->
+  <line x1="510" y1="160" x2="650" y2="120" class="power"/>
+  <line x1="510" y1="190" x2="650" y2="280" class="ground"/>
+  
+  <!-- Touch pad connections -->
+  <line x1="560" y1="420" x2="580" y2="420" class="signal"/>
+  <line x1="640" y1="420" x2="640" y2="240" class="signal"/>
+  <line x1="640" y1="240" x2="650" y2="240" class="signal"/>
+  
+  <!-- Touch resistor to ground -->
+  <line x1="610" y1="427" x2="610" y2="480" class="ground"/>
+  <line x1="610" y1="480" x2="650" y2="480" class="ground"/>
+  <line x1="650" y1="480" x2="650" y2="280" class="ground"/>
+  
+  <!-- LED connections -->
+  <line x1="830" y1="260" x2="880" y2="260" class="signal"/>
+  <line x1="900" y1="260" x2="930" y2="260" class="signal"/>
+  <line x1="990" y1="260" x2="1010" y2="260" class="signal"/>
+  <line x1="1010" y1="260" x2="1010" y2="280" class="ground"/>
+  <line x1="1010" y1="280" x2="650" y2="280" class="ground"/>
+  
+  <!-- Power labels -->
+  <text x="320" y="145" class="label" fill="red">3.7V</text>
+  <text x="540" y="155" class="label" fill="red">VBAT (3.7V)</text>
+  
+  <!-- Ground symbols -->
+  <line x1="605" y1="480" x2="615" y2="480" class="ground"/>
+  <line x1="607" y1="485" x2="613" y2="485" class="ground"/>
+  <line x1="609" y1="490" x2="611" y2="490" class="ground"/>
+  
+  <!-- Notes section -->
+  <rect x="50" y="520" width="1100" height="250" fill="none" stroke="gray" stroke-width="1"/>
+  <text x="70" y="550" class="title">Design Notes:</text>
+  
+  <text x="70" y="580" class="text">1. PCB Size: ≤ 25 × 25 mm, Total height: ≤ 8 mm</text>
+  <text x="70" y="600" class="text">2. TP4056 module includes USB port - no external USB connector needed</text>
+  <text x="70" y="620" class="text">3. ESP32-C3-SuperMini has built-in 3.3V LDO - no external regulator needed</text>
+  <text x="70" y="640" class="text">4. Touch pad: Copper area on PCB, approximately 10-15 mm diameter</text>
+  <text x="70" y="660" class="text">5. 1MΩ resistor prevents touch sensor from getting stuck in triggered state</text>
+  <text x="70" y="680" class="text">6. ESP32-C3 uses internal capacitive touch sensing on GPIO2</text>
+  <text x="70" y="700" class="text">7. Deep sleep: ~10-20 µA, BLE active: ~50-100 mA, Battery life: days to weeks</text>
+  <text x="70" y="720" class="text">8. Default MIDI: Channel 1, Note C4 (60), Velocity 100</text>
+  <text x="70" y="740" class="text">9. LED is optional - can be omitted to save power and PCB space</text>
+  
+</svg>
